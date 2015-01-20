@@ -10,9 +10,9 @@ sap.ui.controller("ui.s2p.mm.requisition.approve.zmm_pr_apv_ext.view.S3_headerCu
 	onInit: function() {
 		var that = this;		
 		//subscribe to the Events from S2 Custom View - On Hide/Show Approval Buttons. The Event Handler will read the Button ID	
-		  var c = sap.ui.core.Component.getOwnerIdFor(this.oView),
+		  var c = sap.ui.core.Component.getOwnerIdFor(this.getView()),
 		  C = sap.ui.component(c);
-		  C.oEventBus.subscribe("zPrApp","showHideApprovalButtons", that._handleApprovalButtonsVisibility, that);	
+		  C.oEventBus.subscribe("zPrApp","showHideApprovalButtons", this._handleApprovalButtonsVisibility, this);	
 		  
 		  this.oRouter
 			.attachRouteMatched(

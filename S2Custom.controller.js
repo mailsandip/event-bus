@@ -99,18 +99,19 @@ sap.ui.controller("ui.s2p.mm.requisition.approve.zmm_pr_apv_ext.view.S2Custom", 
 		
 		sap.ui.controller("ui.s2p.mm.requisition.approve.zmm_pr_apv_ext.view.S3_headerCustom");
 		
-		//C.oEventBus.publish("zPrApp","showHideApprovalButtons",{id:sButtonId}); 
-				
+		//Get the event bus of the core and publish event with the Button ID...	
+		var c = sap.ui.core.Component.getOwnerIdFor(this.getView()),
+		C = sap.ui.component(c);
+		C.oEventBus.publish("zPrApp","showHideApprovalButtons",{id:sButtonId});		
+		
 		// Once the data filtering is done and received by the client, select the first item only if the client is not a Phone
 		oListBindings.attachDataReceived(function(oEvent){
 			//that.registerMasterListBind();
-			//Get the event bus of the core and publish event with the Button ID...Done intentionally here to delay the event publishing	
+		
 
 			//sap.ui.controller("ui.s2p.mm.requisition.approve.view.S3_header");
 		
-			var c = sap.ui.core.Component.getOwnerIdFor(that.oView),
-			C = sap.ui.component(c);
-			C.oEventBus.publish("zPrApp","showHideApprovalButtons",{id:sButtonId});
+			
 			
 			if (that.getList().getItems().length > 0) {						
 				if(!sap.ui.Device.system.phone){
